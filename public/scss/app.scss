@@ -1,0 +1,16 @@
+@import 'config/reset';
+@import 'config/global';
+@import 'config/font';
+@import 'config/variables';
+
+@import 'components/form';
+@import 'config/autocomplete';
+@import 'components/piano';
+
+body{
+    background: url('../img/fond.png');
+    background-size: cover;
+    font-family: 'Sniglet', cursive;
+    padding: 50px 0;
+    min-height: calc(100vh - 100px)
+}

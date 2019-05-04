@@ -1,0 +1,60 @@
+#piano {
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    padding: 50px;
+    padding-top: 200px;
+    border-radius: 20px;
+
+    #logo {
+        color: white;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 40px;
+
+    }
+
+    p:first-of-type{
+        color: white;
+        top: 10%;
+        position: absolute;
+        
+        cursor: pointer;
+        outline: none;
+        border: none;
+        box-shadow: 0 1px 1px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+
+        img {
+            width: 60px;
+            height: 60px;
+            display: block;
+            margin: auto;
+        }
+    }
+
+    .touche{
+        background-color: white;
+        margin: 0 30px;
+        padding: 40px;
+        border-radius: 50%;
+        position: relative;
+        font-size: 20px;
+
+        span{
+            display: flex;
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            top: -40px;
+            left: 50%;
+            width: 15px;
+            height: 15px;
+            transform: translateX(-50%);
+;        }
+    }
+}

@@ -1,0 +1,220 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css?family=Sniglet");
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none; }
+
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+h1 {
+  color: #fff;
+  font-size: 60px;
+  text-align: center;
+  text-transform: uppercase; }
+
+form {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid white;
+  margin: 0 auto;
+  background-color: white;
+  padding: 10px 20px;
+  margin-top: 80px;
+  border-radius: 30px;
+  box-shadow: 0 1px 1px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15); }
+  form input {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 25px;
+    font-family: "Sniglet", cursive;
+    position: relative; }
+    form input::placeholder {
+      font-size: 20px;
+      font-style: italic; }
+  form button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer; }
+  form button#search {
+    padding: 5px;
+    border-radius: 7px; }
+    form button#search:hover {
+      background-color: #E9EBEE; }
+  form button#random {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 7px; }
+    form button#random span {
+      font-family: "Sniglet", cursive;
+      font-size: 20px;
+      margin-left: 5px; }
+    form button#random:hover {
+      background-color: #E9EBEE; }
+
+/*
+ * jQuery UI Autocomplete 1.8.7
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Autocomplete#theming
+ */
+.ui-autocomplete {
+  position: absolute;
+  cursor: default; }
+
+/* workarounds */
+* html .ui-autocomplete {
+  width: 1px; }
+
+/* without this, the menu expands to 100% in IE6 */
+/*
+ * jQuery UI Menu 1.8.7
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Menu#theming
+ */
+.ui-helper-hidden-accessible {
+  display: none; }
+
+.ui-menu {
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+  display: block;
+  float: left;
+  font-size: 20px;
+  font-family: "Sniglet", cursive;
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  max-height: 350px; }
+
+.ui-menu .ui-menu {
+  margin-top: -3px; }
+
+.ui-menu .ui-menu-item {
+  margin: 0;
+  padding: 0;
+  zoom: 1;
+  float: left;
+  clear: left;
+  width: 100%;
+  padding: 5px 0;
+  cursor: pointer; }
+  .ui-menu .ui-menu-item:hover {
+    background-color: rgba(121, 121, 121, 0.3); }
+
+.ui-menu .ui-menu-item a {
+  text-decoration: none;
+  display: block;
+  padding: .2em .4em;
+  line-height: 1.5;
+  zoom: 1;
+  cursor: pointer; }
+
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {
+  font-weight: normal;
+  margin: -1px; }
+
+#piano {
+  background-color: black;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  padding: 50px;
+  padding-top: 200px;
+  border-radius: 20px; }
+  #piano #logo {
+    color: white;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px; }
+  #piano p:first-of-type {
+    color: white;
+    top: 10%;
+    position: absolute;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    box-shadow: 0 1px 1px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15); }
+    #piano p:first-of-type img {
+      width: 60px;
+      height: 60px;
+      display: block;
+      margin: auto; }
+  #piano .touche {
+    background-color: white;
+    margin: 0 30px;
+    padding: 40px;
+    border-radius: 50%;
+    position: relative;
+    font-size: 20px; }
+    #piano .touche span {
+      display: flex;
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      top: -40px;
+      left: 50%;
+      width: 15px;
+      height: 15px;
+      transform: translateX(-50%); }
+
+body {
+  background: url("../img/fond.png");
+  background-size: cover;
+  font-family: 'Sniglet', cursive;
+  padding: 50px 0;
+  min-height: calc(100vh - 100px); }
+
+/*# sourceMappingURL=app.css.map */

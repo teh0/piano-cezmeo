@@ -1,0 +1,12 @@
+{
+    "song" : [
+		{
+			"title": "hobbit",
+			"notes":["do", "re", "mi", "sol", "mi", "re", "do", "do", "re", "mi", "sol", "la", "sol", "mi", "fa", "mi", "re", "do", "re", "mi", "sol", "mi", "re", "do"]
+		},
+		{
+			"title": "au clair de la lune",
+			"notes": ["do", "do", "do", "re", "mi", "re", "do", "mi", "re", "re", "do", "do", "do", "do", "re", "mi", "re", "do", "mi", "re", "re", "do"]
+		}
+	
+]}
