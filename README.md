@@ -7,8 +7,9 @@ Depuis un ordinateur, on peut se connecter sur le serveur de la Raspberry et on 
 
 Nous avons paramétré les touches de clavier de la manière suivante : 
 
-|Touche du clavier|
-|Note associée|
+| Touche de clavier        | a  | z  | e  | r  | t   | y  | u  | i  |
+|--------------------------|----|----|----|----|-----|----|----|----|
+| Note de musique associée | Do | Ré | Mi | Fa | Sol | La | Si | Do |
 
 
 # Explication technique du projet
