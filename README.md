@@ -8,7 +8,8 @@ Le piano CEZMEO est un projet qui rassemble **IOT** (objets connectés), **UX De
   
 - **Utilisation du piano**
 
-  Depuis un ordinateur, on peut se connecter sur le serveur de la Raspberry et on accède à un interface ressemblant à un piano. L'enfant peut alors jouer de la musique en cliquant sur les boutons avec la souris. Il peut aussi directement appuyer sur les touches de claviers associés aux notes. Il peut voir alors s'allumer sur le piano Raspberry la led associée à la note de musique jouée depuis son ordinateur ! La note de musique est également jouée.
+  Depuis un ordinateur, on peut se connecter sur le serveur de la Raspberry et on accède à un interface ressemblant à un piano. L'enfant peut alors jouer de la musique en cliquant sur les boutons avec la souris. Il peut aussi directement appuyer sur les touches de claviers associés aux notes. 
+Au clique d'un bouton, la led associée à la note de musique s'allume sur la Raspberry et on peut entendre la note jouée. 
 
 - **Configuration des touches de l'ordinateur**
 
@@ -23,7 +24,28 @@ Le piano CEZMEO est un projet qui rassemble **IOT** (objets connectés), **UX De
 Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur NodeJS** et **l'ordinateur distant** sur lequel apparait un piano virtuel (intégré en HTML & SASS).
 
 - **La communication Client Serveur**
-  L'une des problématiques de ce projet est de pouvoir garantir une expérience utilisateur agréable et fluide. Autrement dit, il faut donc limiter au maximum le délai entre le moment ou l'utilisateur appuie sur la touche de son clavier d'ordinateur et le son joué sur la Raspberry. Pour se faire, nous avons utilisé une communication en Websocket.
+  L'une des problématiques de ce projet est de pouvoir **garantir une expérience utilisateur agréable et fluide**. Autrement dit, il faut donc limiter au maximum le délai entre le moment ou l'utilisateur appuie sur la touche de son clavier d'ordinateur et le moment où le son est joué sur la Raspberry. Pour se faire, nous avons utilisé une **communication en Websocket**.
   
-  - Mise en place de la communication WebSocket
+- **Mise en place de la communication WebSocket** 
+Pour établir une connexion Websocket entre un client et un serveur, nous utilisons la libraire [socketio](https://socket.io/) 
+  
+  - Côté client
+    Il faut ajouté cette dépendance côté client :
+    ```
+    var socket = io.connect('192.168.1.17:4000')
+    ```
+    Ici, l'adresse de connexion ```192.168.1.17:4000``` doit correspondre à l'addresse IP de votre serveur Node. Il faut donc bien s'assurer que votre **Raspberry Pi** et **votre ordinateur** soit connecté sur le même réseau.
+  - Côté serveur
+    En ES6, on peut directement télécharger le module socket.io avec npm : 
+    ```
+    npm i socket.io
+    ```
+    Ensuite, on peut l'importer directement avec une syntaxe en Javascript ES6 par exemple : 
+    ```
+    var socket = require('socket.io');
+    ```
+    
+  
+  
+# Pour aller plus loin dans le projet
   
