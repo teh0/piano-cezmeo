@@ -52,9 +52,9 @@ Pour établir une connexion Websocket entre un client et un serveur, nous utilis
 - **Construction de notre serveur NodeJS**
 
  Pour piloter une Raspberry avec du Javascript, il faut télécharger des modules précis :
-   [express](http://expressjs.com/) sert à configurer l'architecture de notre serveur.
-   [rpi-gpio](https://www.npmjs.com/package/rpi-gpio) permet de manipuler les ports de la Raspberry (allumer et éteindre les LED).
-   [node-aplay](https://www.npmjs.com/package/node-aplay) permet de donner l'ordre à la Raspberry de jouer un son.
+ - [express](http://expressjs.com/) sert à configurer l'architecture de notre serveur.
+ - [rpi-gpio](https://www.npmjs.com/package/rpi-gpio) permet de manipuler les ports de la Raspberry (allumer et éteindre les LED).
+ - [node-aplay](https://www.npmjs.com/package/node-aplay) permet de donner l'ordre à la Raspberry de jouer un son.
 
 # Pour aller plus loin dans le projet
   
