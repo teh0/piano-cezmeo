@@ -13,6 +13,7 @@ Le piano CEZMEO est un projet qui rassemble **IOT** (objets connectés), **UX De
 - **Configuration des touches de l'ordinateur**
 
   Nous avons paramétré les touches de clavier de la manière suivante : 
+  
   | Touche de clavier        | a  | z  | e  | r  | t   | y  | u  | i  |
   |--------------------------|----|----|----|----|-----|----|----|----|
   | Note de musique associée | Do | Ré | Mi | Fa | Sol | La | Si | Do |
