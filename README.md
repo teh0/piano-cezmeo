@@ -30,22 +30,30 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
 Pour établir une connexion Websocket entre un client et un serveur, nous utilisons la libraire [socketio](https://socket.io/) 
   
   - Côté client
+  
     Il faut ajouté cette dépendance côté client :
     ```
     var socket = io.connect('192.168.1.17:4000')
     ```
     Ici, l'adresse de connexion ```192.168.1.17:4000``` doit correspondre à l'addresse IP de votre serveur Node. Il faut donc bien s'assurer que votre **Raspberry Pi** et **votre ordinateur** soit connecté sur le même réseau.
   - Côté serveur
-    En ES6, on peut directement télécharger le module socket.io avec npm : 
+  
+    On peut directement télécharger le module socket.io avec npm : 
     ```
     npm i socket.io
     ```
-    Ensuite, on peut l'importer directement avec une syntaxe en Javascript ES6 par exemple : 
+    Ensuite, l'importer comme ceci : 
     ```
     var socket = require('socket.io');
     ```
-    
+    La communication Websocket est prête à être utilisée.
   
-  
+- **Construction de notre serveur NodeJS**
+
+Pour piloter une Raspberry avec du Javascript, il faut télécharger des modules précis :
+[express](http://expressjs.com/) sert à configurer l'architecture de notre serveur.
+[rpi-gpio](https://www.npmjs.com/package/rpi-gpio) permet de manipuler les ports de la Raspberry (allumer et éteindre les LED)
+[node-aplay](https://www.npmjs.com/package/node-aplay) permet de donner l'ordre à la Raspberry de jouer un son.
+
 # Pour aller plus loin dans le projet
   
