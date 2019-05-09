@@ -31,14 +31,15 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
 
   Pour établir une connexion Websocket entre un client et un serveur, nous utilisons la libraire [socketio](https://socket.io/) 
   
-    - Côté client
+    - **Côté client**
   
     Il faut ajouté cette dépendance côté client :
     ```js
     var socket = io.connect('192.168.1.17:4000')
     ```
     Ici, l'adresse de connexion ```192.168.1.17:4000``` doit correspondre à l'addresse IP de votre serveur Node. Il faut donc bien s'assurer que votre **Raspberry Pi** et **votre ordinateur** soit connecté sur le même réseau.
-  - Côté serveur
+    
+  - **Côté serveur**
   
     On peut directement télécharger le module socket.io avec npm : 
     ```js
@@ -48,7 +49,7 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
     ```js
     var socket = require('socket.io');
     ```
-    La communication Websocket est prête à être utilisée.
+    La communication Websocket **est prête à être utilisée**.
     
     Lorsque l'utilisateur joue une note de musique, **deux messages Websocket envoyés au serveur**.</br>
     Le premier correspond au moment où la touche **est préssée** et le deuxième correspond au moment où l'utilisateur **enlève son doigt de la touche**. En effet, il faut faire savoir au serveur quand est ce qu'il faut **commencer à jouer** un son est quand est ce qu'il faut l'**arrêter**.
@@ -104,7 +105,35 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
  - [rpi-gpio](https://www.npmjs.com/package/rpi-gpio) permet de manipuler les ports de la Raspberry (allumer et éteindre les LED).
  - [node-aplay](https://www.npmjs.com/package/node-aplay) permet de donner l'ordre à la Raspberry de jouer un son.
  
- Puis, en fonction des messages envoyés par le client, le serveur Node execute 
-
+ Avant de pouvoir commander la Raspberry, il faut initialiser ses ports d'entrée sortie. En l'occurence, nous allons paramétrer nos 8 ports en sortie car il vont renvoyer un signal pour allumer les LED.
+ ```js
+ gpio.setup(18,gpio.DIR_OUT);
+ gpio.setup(16,gpio.DIR_OUT);
+ gpio.setup(12,gpio.DIR_OUT);
+ gpio.setup(10,gpio.DIR_OUT);
+ gpio.setup(31,gpio.DIR_OUT);
+ gpio.setup(33,gpio.DIR_OUT);
+ gpio.setup(35,gpio.DIR_OUT);
+ gpio.setup(37,gpio.DIR_OUT);
+ ```
+ Puis, en fonction des messages envoyés par le client, le serveur Node execute différentes actions sur la Raspberry.
+ 
+ - Quelques exemples d'actions sur la Raspberry
+ 
+ **Allumer une LED**
+ ```js
+ 
+ ```
+ 
+  **Eteindre une LED**
+ ```js
+ 
+ ```
+ 
+  **Jouer un son**
+ ```js
+ 
+ ```
+ 
 # Pour aller plus loin dans le projet
   
