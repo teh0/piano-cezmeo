@@ -1,5 +1,5 @@
 # Piano-CEZMEO
-Le piano CEZMEO est un projet qui rassemble **IOT** (objets connectés), **UX Design** et **programmation**. Nous devions concevoir un **outil adapté à un enfant autiste** pour lui permettre de faire de la musique. Nous sommes partis du constat que les autistes ont souvent des difficultés à s'intégrer socialement. Ils sont malheureusement exclus des activités de groupes. Nous avons donc porté notre intention sur ce point. Nous voulions mettre en place un instrument de musique avec lequel l'enfant autiste pourrait jouer de manière **simple** en compagnie **d'autres personnes** (avec ses parents, ses frères et soeurs ou ses amis).
+Le piano CEZMEO est un projet qui rassemble **IOT** (objets connectés), **UX Design** et **programmation**. Nous devions concevoir un **outil adapté à un enfant autiste** pour lui permettre de faire de la musique. Nous sommes partis du constat que les autistes ont souvent des difficultés à s'intégrer socialement. Ils sont malheureusement exclus des activités de groupes. Nous avons donc porté notre attention sur ce point. Nous voulions mettre en place un instrument de musique avec lequel l'enfant autiste pourrait jouer de manière **simple** en compagnie **d'autres personnes** (avec ses parents, ses frères et soeurs ou ses amis).
 
 # Fonctionnement du projet
 - **Composition du piano**
