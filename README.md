@@ -24,9 +24,11 @@ Au clique d'un bouton, la led associée à la note de musique s'allume sur la Ra
 Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur NodeJS** et **l'ordinateur distant** sur lequel apparait un piano virtuel (intégré en HTML & SASS).
 
 - **La communication Client Serveur**
+
   L'une des problématiques de ce projet est de pouvoir **garantir une expérience utilisateur agréable et fluide**. Autrement dit, il faut donc limiter au maximum le délai entre le moment ou l'utilisateur appuie sur la touche de son clavier d'ordinateur et le moment où le son est joué sur la Raspberry. Pour se faire, nous avons utilisé une **communication en Websocket**.
   
 - **Mise en place de la communication WebSocket** 
+
 Pour établir une connexion Websocket entre un client et un serveur, nous utilisons la libraire [socketio](https://socket.io/) 
   
   - Côté client
@@ -48,13 +50,21 @@ Pour établir une connexion Websocket entre un client et un serveur, nous utilis
     ```
     La communication Websocket est prête à être utilisée.
     
-  
+    Lorsque l'utilisateur joue une note de musique, il y a **deux messages Websocket envoyés eu serveur**.</br>
+    Le premier correspond au moment ou la <span style="color:green">touche est préssée</span> et le deuxième correspond au moment ou l'utilisateur <span style="color:red">enlève son doigt</span> de la touche. En effet, il faut faire savoir au serveur quand est ce qu'il faut <span style="color:green">commencer</span> à jouer un son est quand est ce qu'il faut <span style="color:red">l'arrêter</span>.
+    
+    ```
+    
+    ```
+    
 - **Construction de notre serveur NodeJS**
 
  Pour piloter une Raspberry avec du Javascript, il faut télécharger des modules précis :
  - [express](http://expressjs.com/) sert à configurer l'architecture de notre serveur.
  - [rpi-gpio](https://www.npmjs.com/package/rpi-gpio) permet de manipuler les ports de la Raspberry (allumer et éteindre les LED).
  - [node-aplay](https://www.npmjs.com/package/node-aplay) permet de donner l'ordre à la Raspberry de jouer un son.
+ 
+ 
 
 # Pour aller plus loin dans le projet
   
