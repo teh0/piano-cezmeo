@@ -37,7 +37,7 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
     ```js
     var socket = io.connect('192.168.1.17:4000')
     ```
-    Ici, l'adresse de connexion ```192.168.1.17:4000``` doit correspondre à l'addresse IP de votre serveur Node. Il faut donc bien s'assurer que votre **Raspberry Pi** et **votre ordinateur** soit connecté sur le même réseau.
+    Ici, l'adresse de connexion ```192.168.1.17:4000``` doit correspondre à l'addresse IP de votre serveur Node. Il faut donc bien s'assurer que votre **Raspberry Pi** et **votre ordinateur** soit connecté sur le **même réseau**.
     
   - **Côté serveur**
   
@@ -57,15 +57,15 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
     Voici la forme du message WebSocket
     ```js
     socket.emit('note_action', {
-	note: id,
+        note: id,
         state: 'on',
-		});
+    });
     ```
     L'**Id** correspond au nom de la note jouée et le **state** prend la valeur ```on``` si le bouton du piano est préssé ou ```off``` si le boutton est relaché.
     
     **Comment envoyer la bonne note de musique au serveur ?**
     
-    Si l'utilisateur joue du piano avec les touches du claviers, il faut pouvoir détecter quelle touche est préssée et récupérer la note associée. Pour se faire, j'ai créé un objet Javascript qui associé à chaque note de musique le [key code](https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes) de la touche du clavier.
+    Si l'utilisateur joue du piano avec les touches du clavier, il faut pouvoir détecter quelle touche est préssée et récupérer la note associée. Pour se faire, j'ai créé un objet Javascript qui associe à chaque note de musique le [Key code](https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes) de la touche du clavier.
     ```js
     let key_play = {
       "keyboard": [{
@@ -100,12 +100,12 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
     
 - **Construction du serveur NodeJS**
 
- Pour piloter une Raspberry avec du Javascript, il faut télécharger des modules précis :
- - [express](http://expressjs.com/) sert à configurer l'architecture de notre serveur.
- - [rpi-gpio](https://www.npmjs.com/package/rpi-gpio) permet de manipuler les ports de la Raspberry (allumer et éteindre les LED).
- - [node-aplay](https://www.npmjs.com/package/node-aplay) permet de donner l'ordre à la Raspberry de jouer un son.
+  Pour piloter une Raspberry avec du Javascript, il faut télécharger des modules précis :
+  - [express](http://expressjs.com/) sert à configurer l'architecture de notre serveur.
+  - [rpi-gpio](https://www.npmjs.com/package/rpi-gpio) permet de manipuler les ports de la Raspberry (allumer et éteindre les LED).
+  - [node-aplay](https://www.npmjs.com/package/node-aplay) permet de donner l'ordre à la Raspberry de jouer un son.
  
- Avant de pouvoir commander la Raspberry, il faut **initialiser ses ports d'entrées sorties**. En l'occurence, nous allons paramétrer nos 8 ports en sortie car ils vont renvoyer un signal pour allumer les LED.
+  Avant de pouvoir commander la Raspberry, il faut **initialiser ses ports d'entrées sorties**. En l'occurence, nous allons paramétrer nos 8 ports en sortie car ils vont renvoyer un signal pour allumer les LED.
  ```js
  gpio.setup(18,gpio.DIR_OUT);
  gpio.setup(16,gpio.DIR_OUT);
@@ -120,7 +120,7 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
  
  - Quelques exemples d'actions sur la Raspberry
  
-   **Allumer une LED**
+ **Allumer une LED**
    ```js
    gpio.write(num_pin, true, function(err) {
        if (err) throw err
@@ -128,13 +128,13 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
        });
    ```
  
-   **Éteindre une LED**
+  **Éteindre une LED**
    ```js
    gpio.write(num_pin, false, function(err) {
        if (err) throw err
    ``` 
        
-   **Jouer un son**
+  **Jouer un son**
    ```js
    let p_do = new Sound('./public/sound/Do.wav');
    p_do.play();
