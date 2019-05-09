@@ -1,14 +1,14 @@
 # Piano-CEZMEO
-Le piano CEZMEO est un projet qui rassemble **IOT** (objets connectés), **UX Design** et **programmation**. Nous devions concevoir un **outil adapté à une personne autiste** pour lui permettre de faire de la musique. Nous sommes partis du constat que les personnes autistes ont souvent des difficultés à s'intégrer socialement. Ils sont malheureusement exclus des activités de groupes. Nous avons donc porté notre intention sur ce point. Nous voulions mettre en place un instrument avec lequel l'enfant autiste pourrait jouer de manière **simple** en compagnie **d'autres personnes** (avec ses parents, ses frères et soeurs ou ses amis).
+Le piano CEZMEO est un projet qui rassemble **IOT** (objets connectés), **UX Design** et **programmation**. Nous devions concevoir un **outil adapté à une personne autiste** pour lui permettre de faire de la musique. Nous sommes partis du constat que les personnes autistes ont souvent des difficultés à s'intégrer socialement. Ils sont malheureusement exclus des activités de groupes. Nous avons donc porté notre intention sur ce point. Nous voulions mettre en place un instrument de musique avec lequel l'enfant autiste pourrait jouer de manière **simple** en compagnie **d'autres personnes** (avec ses parents, ses frères et soeurs ou ses amis).
 
 # Fonctionnement du projet
 - **Composition du piano**
 
-  Pour réaliser ce piano connecté, nous avons construit un piano physique avec [une Raspberry Pi 3](https://www.raspberrypi-france.fr/). Ce dernier comporte **8 leds** associées aux **8 touches d'un piano** ( nous avons fais exprès de limiter le nombre de touche pour augmenter la facilité d'utilisation). Nous y avons également ajouté **un serveur NodeJS** qui va permettre de manipuler les ports de la Raspberry en Javascript et ainsi executer des actions sur la Raspberry (allumer les LED, jouer un son sur une sortie audio).
+  Pour réaliser ce piano connecté, nous avons construit un piano physique avec [une Raspberry Pi 3](https://www.raspberrypi-france.fr/). Ce dernier comporte **8 LED** associées aux **8 touches d'un piano** ( nous avons fait exprès de limiter le nombre de touche pour augmenter la facilité d'utilisation). Nous y avons également installé **un serveur NodeJS** qui va permettre de manipuler les ports entrée / sortie de la Raspberry en Javascript et ainsi exécuter des actions sur la Raspberry (allumer les LED, jouer un son sur une sortie audio).
   
 - **Utilisation du piano**
 
-  Depuis un ordinateur, on peut se connecter sur le serveur de la Raspberry et on accède à un interface ressemblant à un piano. L'enfant peut alors jouer de la musique en cliquant sur les boutons avec la souris. Il peut aussi directement appuyer sur les touches de claviers associés aux notes. 
+  Depuis un ordinateur, on peut se connecter sur le serveur de la Raspberry et on accède à une interface ressemblant à un piano. L'enfant peut alors jouer de la musique en cliquant sur les boutons avec la souris. Il peut aussi directement appuyer sur les touches de claviers associées aux notes. 
 Au clique d'un bouton, la led associée à la note de musique s'allume sur la Raspberry et on peut entendre la note jouée. 
 
 - **Configuration des touches de l'ordinateur**
@@ -21,19 +21,19 @@ Au clique d'un bouton, la led associée à la note de musique s'allume sur la Ra
 
 
 # Explication technique du projet
-Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur NodeJS** et **l'ordinateur distant** sur lequel apparait un piano virtuel (intégré en HTML & SASS).
+Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur NodeJS** et **l'ordinateur distant** sur lequel apparaît un piano virtuel (intégré en HTML & SASS).
 
 - **La communication Client Serveur**
 
-  L'une des problématiques de ce projet est de pouvoir **garantir une expérience utilisateur agréable et fluide**. Autrement dit, il faut donc limiter au maximum le délai entre le moment ou l'utilisateur appuie sur la touche de son clavier d'ordinateur et le moment où le son est joué sur la Raspberry. Pour se faire, nous avons utilisé une **communication en Websocket**.
+  L'une des problématiques de ce projet est de pouvoir **garantir une expérience utilisateur agréable et fluide**. Autrement dit, il faut limiter au maximum le délai entre le moment ou l'utilisateur appuie sur la touche de son clavier d'ordinateur et le moment où le son est joué sur la Raspberry. Pour se faire, nous avons utilisé une **communication en Websocket**.
   
 - **Mise en place de la communication WebSocket** 
 
-  Pour établir une connexion Websocket entre un client et un serveur, nous utilisons la libraire [socketio](https://socket.io/) 
+  Pour établir une connexion Websocket entre un client et un serveur, nous utilisons la libraire [socket.io](https://socket.io/) 
   
     - **Côté client**
   
-    Il faut ajouté cette dépendance côté client :
+    Il faut ajouter cette dépendance côté client :
     ```js
     var socket = io.connect('192.168.1.17:4000')
     ```
@@ -45,27 +45,27 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
     ```js
     npm i socket.io
     ```
-    Ensuite, l'importer comme ceci : 
+    Ensuite, on peut l'importer comme ceci : 
     ```js
     var socket = require('socket.io');
     ```
     La communication Websocket **est prête à être utilisée**.
     
-    Lorsque l'utilisateur joue une note de musique, **deux messages Websocket envoyés au serveur**.</br>
+    Lorsque l'utilisateur joue une note de musique, **deux messages Websocket sont envoyés au serveur**.</br>
     Le premier correspond au moment où la touche **est préssée** et le deuxième correspond au moment où l'utilisateur **enlève son doigt de la touche**. En effet, il faut faire savoir au serveur quand est ce qu'il faut **commencer à jouer** un son est quand est ce qu'il faut l'**arrêter**.
     
     Voici la forme du message WebSocket
     ```js
     socket.emit('note_action', {
-	      note: id,
-			  state: 'on',
+	note: id,
+        state: 'on',
 		});
     ```
-    L'**Id** correspond au nom de la note jouée et **state** prend la valeur on si le bouton du piano est préssé et off si le boutton est relaché.
+    L'**Id** correspond au nom de la note jouée et le **state** prend la valeur ```on``` si le bouton du piano est préssé ou ```off``` si le boutton est relaché.
     
     **Comment envoyer la bonne note de musique au serveur ?**
     
-    Si l'utilisateur joue du piano avec les touches du claviers, il faut pouvoir détecter quelle touche est préssé et récupérer la note associée. Pour se faire, j'ai créé un objet Javascript qui associé à chaque note de musique le [key code](https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes) de la touche du clavier.
+    Si l'utilisateur joue du piano avec les touches du claviers, il faut pouvoir détecter quelle touche est préssée et récupérer la note associée. Pour se faire, j'ai créé un objet Javascript qui associé à chaque note de musique le [key code](https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes) de la touche du clavier.
     ```js
     let key_play = {
       "keyboard": [{
@@ -98,14 +98,14 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
 	});
     ```
     
-- **Construction de notre serveur NodeJS**
+- **Construction du serveur NodeJS**
 
  Pour piloter une Raspberry avec du Javascript, il faut télécharger des modules précis :
  - [express](http://expressjs.com/) sert à configurer l'architecture de notre serveur.
  - [rpi-gpio](https://www.npmjs.com/package/rpi-gpio) permet de manipuler les ports de la Raspberry (allumer et éteindre les LED).
  - [node-aplay](https://www.npmjs.com/package/node-aplay) permet de donner l'ordre à la Raspberry de jouer un son.
  
- Avant de pouvoir commander la Raspberry, il faut initialiser ses ports d'entrée sortie. En l'occurence, nous allons paramétrer nos 8 ports en sortie car il vont renvoyer un signal pour allumer les LED.
+ Avant de pouvoir commander la Raspberry, il faut **initialiser ses ports d'entrées sorties**. En l'occurence, nous allons paramétrer nos 8 ports en sortie car ils vont renvoyer un signal pour allumer les LED.
  ```js
  gpio.setup(18,gpio.DIR_OUT);
  gpio.setup(16,gpio.DIR_OUT);
@@ -116,7 +116,7 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
  gpio.setup(35,gpio.DIR_OUT);
  gpio.setup(37,gpio.DIR_OUT);
  ```
- Puis, en fonction des messages envoyés par le client, le serveur Node execute différentes actions sur la Raspberry.
+ Puis, en fonction des messages envoyés par le client, le serveur Node exécute différentes actions sur la Raspberry.
  
  - Quelques exemples d'actions sur la Raspberry
  
@@ -128,7 +128,7 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
        });
    ```
  
-   **Eteindre une LED**
+   **Éteindre une LED**
    ```js
    gpio.write(num_pin, false, function(err) {
        if (err) throw err
@@ -141,11 +141,11 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
    ```
  
  # Pour aller plus loin dans le projet
-A long terme, il serait intéressant de dématerialiser cette idée afin de pouvoir créer une application web. Nous pourrions par exemple extraire le serveur NodeJS de la Raspberry et la mettre directement sur un serveur en ligne. Ainsi, tous les utilisateurs connectés à ce serveur pourraient jouer de la musique en même temps et construire une partition ensemble.
+A long terme, il serait intéressant de **dématerialiser ce projet** afin de pouvoir créer une application web. Nous pourrions par exemple extraire le serveur NodeJS de la Raspberry et la mettre directement sur un serveur en ligne. Ainsi, tous les utilisateurs connectés à ce serveur pourraient jouer de la musique en même temps et construire une partition ensemble.
 
-Ca pourrait être une ouverture à l'apprentissage du piano a distance. On aurait par exemple un professeur à Paris qui donnerai des cours a une personne habitant à Toulouse.
+Ca pourrait être une ouverture à l'apprentissage du piano à distance. On aurait par exemple un professeur à Paris qui donnerait des cours de musique à une personne habitant à Toulouse. Tout ça depuis chez eux !
 
-D'un point de vue experience utilisateur, nous pourrions construire une manette en forme de piano directement branchable par USB afin que les utilisateur puisse jouer sur le piano et non sur les touches de l'ordinateur.
+D'un point de vue expérience utilisateur, nous pourrions **construire une manette en forme de piano** directement branchable par USB afin que les utilisateur puissent jouer sur le piano et non sur les touches de l'ordinateur.
 
-Tant de perspective pour l'avenir !
+Il y a tant de perspectives à envisager !
   
