@@ -29,9 +29,9 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
   
 - **Mise en place de la communication WebSocket** 
 
-Pour établir une connexion Websocket entre un client et un serveur, nous utilisons la libraire [socketio](https://socket.io/) 
+  Pour établir une connexion Websocket entre un client et un serveur, nous utilisons la libraire [socketio](https://socket.io/) 
   
-  - Côté client
+    - Côté client
   
     Il faut ajouté cette dépendance côté client :
     ```js
