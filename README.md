@@ -51,7 +51,7 @@ Pour établir une connexion Websocket entre un client et un serveur, nous utilis
     La communication Websocket est prête à être utilisée.
     
     Lorsque l'utilisateur joue une note de musique, il y a **deux messages Websocket envoyés eu serveur**.</br>
-    Le premier correspond au moment ou la touche ```diff + est préssée``` et le deuxième correspond au moment ou l'utilisateur enlève son doigt de la touche. En effet, il faut faire savoir au serveur quand est ce qu'il faut commencer à jouer un son est quand est ce qu'il faut l'arrêter.
+    Le premier correspond au moment ou la touche **est préssée** et le deuxième correspond au moment ou l'utilisateur **enlève son doigt de la touche**. En effet, il faut faire savoir au serveur quand est ce qu'il faut **commencer à jouer** un son est quand est ce qu'il faut l'**arrêter**.
     
     ```
     
