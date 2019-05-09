@@ -4,7 +4,7 @@ Le piano CEZMEO est un projet qui rassemble **IOT** (objets connectés), **UX De
 # Fonctionnement du projet
 - **Composition du piano**
 
-  Pour réaliser ce piano connecté, nous avons construit un piano physique avec [une Raspberry Pi 3](https://www.raspberrypi-france.fr/). Ce dernier comporte **8 LED** associées aux **8 touches d'un piano** ( nous avons fait exprès de limiter le nombre de touche pour augmenter la facilité d'utilisation). Nous y avons également installé **un serveur NodeJS** qui va permettre de manipuler les ports entrée / sortie de la Raspberry en Javascript et ainsi exécuter des actions sur la Raspberry (allumer les LED, jouer un son sur une sortie audio).
+  Pour réaliser ce piano connecté, nous avons construit un piano physique avec [une Raspberry Pi 3](https://www.raspberrypi-france.fr/). Ce dernier comporte **8 LED** associées aux **8 touches d'un piano** (nous avons fait exprès de limiter le nombre de touche pour augmenter la facilité d'utilisation). Nous y avons également installé **un serveur NodeJS** qui va permettre de manipuler les ports entrée / sortie de la Raspberry en Javascript et ainsi exécuter des actions sur la Raspberry (allumer les LED, jouer un son sur une sortie audio).
   
 - **Utilisation du piano**
 
