@@ -1,5 +1,5 @@
 # Piano-CEZMEO
-Le piano CEZMEO est un projet qui rassemble **IOT** (objets connectés), **UX Design** et **programmation**. Nous devions concevoir un **outil adapté à une personne autiste** pour lui permettre de faire de la musique. Nous sommes partis du constat que les personnes autistes ont souvent des difficultés à s'intégrer socialement. Ils sont malheureusement exclus des activités de groupes. Nous avons donc portés notre intention sur ce point. Nous voulions mettre en place un instrument avec lequel l'enfant autiste pourrait jouer de manière simple en compagnie d'autres personnes (avec ses parents, ses frères et soeurs ou ses amis).
+Le piano CEZMEO est un projet qui rassemble **IOT** (objets connectés), **UX Design** et **programmation**. Nous devions concevoir un **outil adapté à une personne autiste** pour lui permettre de faire de la musique. Nous sommes partis du constat que les personnes autistes ont souvent des difficultés à s'intégrer socialement. Ils sont malheureusement exclus des activités de groupes. Nous avons donc porté notre intention sur ce point. Nous voulions mettre en place un instrument avec lequel l'enfant autiste pourrait jouer de manière **simple** en compagnie **d'autres personnes** (avec ses parents, ses frères et soeurs ou ses amis).
 
 # Fonctionnement du projet
 - **Composition du piano**
@@ -120,20 +120,33 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
  
  - Quelques exemples d'actions sur la Raspberry
  
- **Allumer une LED**
- ```js
+   **Allumer une LED**
+   ```js
+   gpio.write(num_pin, true, function(err) {
+       if (err) throw err
+       
+       });
+   ```
  
- ```
- 
-  **Eteindre une LED**
- ```js
- 
- ```
+   **Eteindre une LED**
+   ```js
+   gpio.write(num_pin, false, function(err) {
+       if (err) throw err
+       
+       
  
   **Jouer un son**
- ```js
+  ```js
+  let p_do = new Sound('./public/sound/Do.wav');
+  p_do.play();
+  ```
  
- ```
- 
-# Pour aller plus loin dans le projet
+ # Pour aller plus loin dans le projet
+A long terme, il serait intéressant de dématerialiser cette idée afin de pouvoir créer une application web. Nous pourrions par exemple extraire le serveur NodeJS de la Raspberry et la mettre directement sur un serveur en ligne. Ainsi, tous les utilisateurs connectés à ce serveur pourraient jouer de la musique en même temps et construire une partition ensemble.
+
+Ca pourrait être une ouverture à l'apprentissage du piano a distance. On aurait par exemple un professeur à Paris qui donnerai des cours a une personne habitant à Toulouse.
+
+D'un point de vue experience utilisateur, nous pourrions construire une manette en forme de piano directement branchable par USB afin que les utilisateur puisse jouer sur le piano et non sur les touches de l'ordinateur.
+
+Tant de perspective pour l'avenir !
   
