@@ -80,7 +80,22 @@ Pour établir une connexion Websocket entre un client et un serveur, nous utilis
     };
     ```
     
-    Grâce à cet objet, on peut associer la note de musique avec la touche préssée en ajouter un écouteur d'évènement Javascript.
+    Grâce à cet objet, on peut associer la note de musique avec la touche préssée en ajouter un écouteur d'évènement Javascript sur les touches de clavier
+    ```js
+	$(document).on("keyup", (e) => {
+		if(canKey && list_keybind.includes(e.which) ){
+			const items = Object.values(key_play.keyboard).filter(({
+				key
+			}) => key == e.which);
+			let id = items[0].note;
+			$(`#${items[0].note}`).click();
+			 socket.emit('note_action', {
+				note: id,
+				state: 'off',
+			 });
+		}
+	});
+    ```
     
 - **Construction de notre serveur NodeJS**
 
