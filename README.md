@@ -34,24 +34,24 @@ Pour établir une connexion Websocket entre un client et un serveur, nous utilis
   - Côté client
   
     Il faut ajouté cette dépendance côté client :
-    ```
+    ```js
     var socket = io.connect('192.168.1.17:4000')
     ```
     Ici, l'adresse de connexion ```192.168.1.17:4000``` doit correspondre à l'addresse IP de votre serveur Node. Il faut donc bien s'assurer que votre **Raspberry Pi** et **votre ordinateur** soit connecté sur le même réseau.
   - Côté serveur
   
     On peut directement télécharger le module socket.io avec npm : 
-    ```
+    ```js
     npm i socket.io
     ```
     Ensuite, l'importer comme ceci : 
-    ```
+    ```js
     var socket = require('socket.io');
     ```
     La communication Websocket est prête à être utilisée.
     
     Lorsque l'utilisateur joue une note de musique, il y a **deux messages Websocket envoyés eu serveur**.</br>
-    Le premier correspond au moment ou la <span style="color:green">touche est préssée</span> et le deuxième correspond au moment ou l'utilisateur <span style="color:red">enlève son doigt</span> de la touche. En effet, il faut faire savoir au serveur quand est ce qu'il faut <span style="color:green">commencer</span> à jouer un son est quand est ce qu'il faut <span style="color:red">l'arrêter</span>.
+    Le premier correspond au moment ou la touche ```diff + est préssée``` et le deuxième correspond au moment ou l'utilisateur enlève son doigt de la touche. En effet, il faut faire savoir au serveur quand est ce qu'il faut commencer à jouer un son est quand est ce qu'il faut l'arrêter.
     
     ```
     
