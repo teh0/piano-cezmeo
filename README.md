@@ -50,12 +50,37 @@ Pour établir une connexion Websocket entre un client et un serveur, nous utilis
     ```
     La communication Websocket est prête à être utilisée.
     
-    Lorsque l'utilisateur joue une note de musique, il y a **deux messages Websocket envoyés eu serveur**.</br>
-    Le premier correspond au moment ou la touche **est préssée** et le deuxième correspond au moment ou l'utilisateur **enlève son doigt de la touche**. En effet, il faut faire savoir au serveur quand est ce qu'il faut **commencer à jouer** un son est quand est ce qu'il faut l'**arrêter**.
+    Lorsque l'utilisateur joue une note de musique, **deux messages Websocket envoyés au serveur**.</br>
+    Le premier correspond au moment où la touche **est préssée** et le deuxième correspond au moment où l'utilisateur **enlève son doigt de la touche**. En effet, il faut faire savoir au serveur quand est ce qu'il faut **commencer à jouer** un son est quand est ce qu'il faut l'**arrêter**.
     
+    Voici la forme du message WebSocket
+    ```js
+    socket.emit('note_action', {
+	      note: id,
+			  state: 'on',
+		});
+    ```
+    L'**Id** correspond au nom de la note jouée et **state** prend la valeur on si le bouton du piano est préssé et off si le boutton est relaché.
+    
+    **Comment envoyer la bonne note de musique au serveur ?**
+    
+    Si l'utilisateur joue du piano avec les touches du claviers, il faut pouvoir détecter quelle touche est préssé et récupérer la note associée. Pour se faire, j'ai créé un objet Javascript qui associé à chaque note de musique le [key code](https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes) de la touche du clavier.
+    ```js
+    let key_play = {
+      "keyboard": [{
+          "key": 65,"note": "do"}, //a
+          {"key": 90,"note": "re"}, //z
+          {"key": 69,"note": "mi"}, //e
+          {"key": 82,"note": "fa"}, //r
+          {"key": 84,"note": "sol"}, //t
+          {"key": 89,"note": "la"}, //y
+          {"key": 85,"note": "si"}, //u
+          {"key": 73,"note": "do_oct"}, //i
+        ]
+    };
     ```
     
-    ```
+    Grâce à cet objet, on peut associer la note de musique avec la touche préssée en ajouter un écouteur d'évènement Javascript.
     
 - **Construction de notre serveur NodeJS**
 
@@ -64,7 +89,7 @@ Pour établir une connexion Websocket entre un client et un serveur, nous utilis
  - [rpi-gpio](https://www.npmjs.com/package/rpi-gpio) permet de manipuler les ports de la Raspberry (allumer et éteindre les LED).
  - [node-aplay](https://www.npmjs.com/package/node-aplay) permet de donner l'ordre à la Raspberry de jouer un son.
  
- 
+ Puis, en fonction des messages envoyés par le client, le serveur Node execute 
 
 # Pour aller plus loin dans le projet
   
