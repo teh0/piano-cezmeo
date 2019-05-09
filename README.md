@@ -132,14 +132,13 @@ Techniquement il y a deux parties bien distinctes dans ce projet : **le serveur 
    ```js
    gpio.write(num_pin, false, function(err) {
        if (err) throw err
+   ``` 
        
-       
- 
-  **Jouer un son**
-  ```js
-  let p_do = new Sound('./public/sound/Do.wav');
-  p_do.play();
-  ```
+   **Jouer un son**
+   ```js
+   let p_do = new Sound('./public/sound/Do.wav');
+   p_do.play();
+   ```
  
  # Pour aller plus loin dans le projet
 A long terme, il serait intéressant de dématerialiser cette idée afin de pouvoir créer une application web. Nous pourrions par exemple extraire le serveur NodeJS de la Raspberry et la mettre directement sur un serveur en ligne. Ainsi, tous les utilisateurs connectés à ce serveur pourraient jouer de la musique en même temps et construire une partition ensemble.
